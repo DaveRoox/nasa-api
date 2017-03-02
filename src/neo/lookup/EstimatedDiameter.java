@@ -6,8 +6,8 @@ import org.json.JSONObject;
 public class EstimatedDiameter {
 
 	/* API-Dependent constants */
-	private static final String PARAM_ESTIMATED_DIAMETER_MIN = "estimated_diameter_min";
-	private static final String PARAM_ESTIMATED_DIAMETER_MAX = "estimated_diameter_max";
+	private static final String FIELD_ESTIMATED_DIAMETER_MIN = "estimated_diameter_min";
+	private static final String FIELD_ESTIMATED_DIAMETER_MAX = "estimated_diameter_max";
 
 	private UnitOfMeasurement unitOfMeasurement;
 	private Double estimatedDiameterMin;
@@ -52,8 +52,8 @@ public class EstimatedDiameter {
 
 		if(unitOfMeasurement == null)
 			return;
-		estimatedDiameterMax = jobj.getDouble(PARAM_ESTIMATED_DIAMETER_MAX);
-		estimatedDiameterMin = jobj.getDouble(PARAM_ESTIMATED_DIAMETER_MIN);
+		estimatedDiameterMax = jobj.getDouble(FIELD_ESTIMATED_DIAMETER_MAX);
+		estimatedDiameterMin = jobj.getDouble(FIELD_ESTIMATED_DIAMETER_MIN);
 	}
 
 }

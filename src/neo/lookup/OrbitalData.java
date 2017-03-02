@@ -11,24 +11,24 @@ public class OrbitalData {
 
 	/* API-Dependent constants */
 	private static final String DATE_FORMAT = "yyyy-MM-d HH:mm:ss";
-	private static final String PARAM_ORBIT_ID = "orbit_id";
-	private static final String PARAM_ORBIT_DETERMINATION_DATE = "orbit_determination_date";
-	private static final String PARAM_ORBIT_UNCERTAINTY = "orbit_uncertainty";
-	private static final String PARAM_MINIMUM_ORBIT_INTERSECTION = "minimum_orbit_intersection";
-	private static final String PARAM_JUPITER_TISSERAND_INVARIANT = "jupiter_tisserand_invariant";
-	private static final String PARAM_EPOCH_OSCULATION = "epoch_osculation";
-	private static final String PARAM_ECCENTRICITY = "eccentricity";
-	private static final String PARAM_SEMI_MAJOR_AXIS = "semi_major_axis";
-	private static final String PARAM_INCLINATION = "inclination";
-	private static final String PARAM_ASCENDING_NODE_LONGITUDE = "ascending_node_longitude";
-	private static final String PARAM_ORBITAL_PERIOD = "orbital_period";
-	private static final String PARAM_PERIHELION_DISTANCE = "perihelion_distance";
-	private static final String PARAM_PERIHELION_ARGUMENT = "perihelion_argument";
-	private static final String PARAM_APHELION_DISTANCE = "aphelion_distance";
-	private static final String PARAM_PERIHELION_TIME = "perihelion_time";
-	private static final String PARAM_MEAN_ANOMALY = "mean_anomaly";
-	private static final String PARAM_MEAN_MOTION = "mean_motion";
-	private static final String PARAM_EQUINOX = "equinox";
+	private static final String FIELD_ORBIT_ID = "orbit_id";
+	private static final String FIELD_ORBIT_DETERMINATION_DATE = "orbit_determination_date";
+	private static final String FIELD_ORBIT_UNCERTAINTY = "orbit_uncertainty";
+	private static final String FIELD_MINIMUM_ORBIT_INTERSECTION = "minimum_orbit_intersection";
+	private static final String FIELD_JUPITER_TISSERAND_INVARIANT = "jupiter_tisserand_invariant";
+	private static final String FIELD_EPOCH_OSCULATION = "epoch_osculation";
+	private static final String FIELD_ECCENTRICITY = "eccentricity";
+	private static final String FIELD_SEMI_MAJOR_AXIS = "semi_major_axis";
+	private static final String FIELD_INCLINATION = "inclination";
+	private static final String FIELD_ASCENDING_NODE_LONGITUDE = "ascending_node_longitude";
+	private static final String FIELD_ORBITAL_PERIOD = "orbital_period";
+	private static final String FIELD_PERIHELION_DISTANCE = "perihelion_distance";
+	private static final String FIELD_PERIHELION_ARGUMENT = "perihelion_argument";
+	private static final String FIELD_APHELION_DISTANCE = "aphelion_distance";
+	private static final String FIELD_PERIHELION_TIME = "perihelion_time";
+	private static final String FIELD_MEAN_ANOMALY = "mean_anomaly";
+	private static final String FIELD_MEAN_MOTION = "mean_motion";
+	private static final String FIELD_EQUINOX = "equinox";
 
 	/* Utility SimpleDateFormatter */
 	private static SimpleDateFormat sdf = new SimpleDateFormat(DATE_FORMAT);
@@ -233,24 +233,24 @@ public class OrbitalData {
 	}
 
 	public void parse(JSONObject jobj) throws JSONException, ParseException {
-		orbitID = jobj.getString(OrbitalData.PARAM_ORBIT_ID);
-		orbitDeterminationDate = sdf.parse(jobj.getString(OrbitalData.PARAM_ORBIT_DETERMINATION_DATE));
-		orbitUncertainty = Integer.valueOf(jobj.getString(OrbitalData.PARAM_ORBIT_UNCERTAINTY));
-		minimumOrbitIntersection = Double.valueOf(jobj.getString(OrbitalData.PARAM_MINIMUM_ORBIT_INTERSECTION));
-		jupiterTisserandInvariant = Double.valueOf(jobj.getString(OrbitalData.PARAM_JUPITER_TISSERAND_INVARIANT));
-		epochOsculation = Double.valueOf(jobj.getString(OrbitalData.PARAM_EPOCH_OSCULATION));
-		eccentricity = Double.valueOf(jobj.getString(OrbitalData.PARAM_ECCENTRICITY));
-		semiMajorAxis = Double.valueOf(jobj.getString(OrbitalData.PARAM_SEMI_MAJOR_AXIS));
-		inclination = Double.valueOf(jobj.getString(OrbitalData.PARAM_INCLINATION));
-		ascendingNodeLongitude = Double.valueOf(jobj.getString(OrbitalData.PARAM_ASCENDING_NODE_LONGITUDE));
-		orbital_period = Double.valueOf(jobj.getString(OrbitalData.PARAM_ORBITAL_PERIOD));
-		perihelionDistance = Double.valueOf(jobj.getString(OrbitalData.PARAM_PERIHELION_DISTANCE));
-		perihelionArgument = Double.valueOf(jobj.getString(OrbitalData.PARAM_PERIHELION_ARGUMENT));
-		aphelionDistance = Double.valueOf(jobj.getString(OrbitalData.PARAM_APHELION_DISTANCE));
-		perihelionTime = Double.valueOf(jobj.getString(OrbitalData.PARAM_PERIHELION_TIME));
-		meanAnomaly = Double.valueOf(jobj.getString(OrbitalData.PARAM_MEAN_ANOMALY));
-		meanMotion = Double.valueOf(jobj.getString(OrbitalData.PARAM_MEAN_MOTION));
-		equinox = jobj.getString(OrbitalData.PARAM_EQUINOX);
+		orbitID = jobj.getString(OrbitalData.FIELD_ORBIT_ID);
+		orbitDeterminationDate = sdf.parse(jobj.getString(OrbitalData.FIELD_ORBIT_DETERMINATION_DATE));
+		orbitUncertainty = Integer.valueOf(jobj.getString(OrbitalData.FIELD_ORBIT_UNCERTAINTY));
+		minimumOrbitIntersection = Double.valueOf(jobj.getString(OrbitalData.FIELD_MINIMUM_ORBIT_INTERSECTION));
+		jupiterTisserandInvariant = Double.valueOf(jobj.getString(OrbitalData.FIELD_JUPITER_TISSERAND_INVARIANT));
+		epochOsculation = Double.valueOf(jobj.getString(OrbitalData.FIELD_EPOCH_OSCULATION));
+		eccentricity = Double.valueOf(jobj.getString(OrbitalData.FIELD_ECCENTRICITY));
+		semiMajorAxis = Double.valueOf(jobj.getString(OrbitalData.FIELD_SEMI_MAJOR_AXIS));
+		inclination = Double.valueOf(jobj.getString(OrbitalData.FIELD_INCLINATION));
+		ascendingNodeLongitude = Double.valueOf(jobj.getString(OrbitalData.FIELD_ASCENDING_NODE_LONGITUDE));
+		orbital_period = Double.valueOf(jobj.getString(OrbitalData.FIELD_ORBITAL_PERIOD));
+		perihelionDistance = Double.valueOf(jobj.getString(OrbitalData.FIELD_PERIHELION_DISTANCE));
+		perihelionArgument = Double.valueOf(jobj.getString(OrbitalData.FIELD_PERIHELION_ARGUMENT));
+		aphelionDistance = Double.valueOf(jobj.getString(OrbitalData.FIELD_APHELION_DISTANCE));
+		perihelionTime = Double.valueOf(jobj.getString(OrbitalData.FIELD_PERIHELION_TIME));
+		meanAnomaly = Double.valueOf(jobj.getString(OrbitalData.FIELD_MEAN_ANOMALY));
+		meanMotion = Double.valueOf(jobj.getString(OrbitalData.FIELD_MEAN_MOTION));
+		equinox = jobj.getString(OrbitalData.FIELD_EQUINOX);
 	}
 
 }

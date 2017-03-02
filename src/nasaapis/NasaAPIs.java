@@ -60,9 +60,10 @@ public class NasaAPIs {
 	}*/
 	
 	// NEO Lookup
+	/* It's just an example, this method won't be present in the final release */
 	public NEOLookupResponse neoLookup() {
 		try {
-			return (NEOLookupResponse) new NEOLookupRequest(apiKey).send();
+			return (NEOLookupResponse) new NEOLookupRequest(3542519, apiKey).send();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

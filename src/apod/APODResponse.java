@@ -103,7 +103,6 @@ public class APODResponse extends GenericResponse {
 	@Override
 	public void fillObject() {
 		try {
-			System.out.println(rawResponse);
 			JSONObject jobj = new JSONObject(rawResponse);
 			this.setDate(APODRequest.sdf.parse(jobj.getString(APODResponse.FIELD_DATE)));
 			this.setExplanation(jobj.getString(APODResponse.FIELD_EXPL));

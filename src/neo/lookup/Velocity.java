@@ -6,9 +6,9 @@ import org.json.JSONObject;
 public class Velocity {
 
 	/* API-Dependent constants */
-	private static final String PARAM_KILOMETERS_PER_SECOND = "kilometers_per_second";
-	private static final String PARAM_KILOMETERS_PER_HOUR = "kilometers_per_hour";
-	private static final String PARAM_MILES_PER_HOUR = "miles_per_hour";
+	private static final String FIELD_KILOMETERS_PER_SECOND = "kilometers_per_second";
+	private static final String FIELD_KILOMETERS_PER_HOUR = "kilometers_per_hour";
+	private static final String FIELD_MILES_PER_HOUR = "miles_per_hour";
 
 	private Double kilometersPerSecond;
 	private Double kilometersPerHour;
@@ -49,9 +49,9 @@ public class Velocity {
 	}
 
 	public void parse(JSONObject jobj) throws NumberFormatException, JSONException {
-		kilometersPerSecond = Double.valueOf(jobj.getString(Velocity.PARAM_KILOMETERS_PER_SECOND));
-		kilometersPerHour = Double.valueOf(jobj.getString(Velocity.PARAM_KILOMETERS_PER_HOUR));
-		milesPerHour = Double.valueOf(jobj.getString(Velocity.PARAM_MILES_PER_HOUR));
+		kilometersPerSecond = Double.valueOf(jobj.getString(Velocity.FIELD_KILOMETERS_PER_SECOND));
+		kilometersPerHour = Double.valueOf(jobj.getString(Velocity.FIELD_KILOMETERS_PER_HOUR));
+		milesPerHour = Double.valueOf(jobj.getString(Velocity.FIELD_MILES_PER_HOUR));
 	}
 
 }

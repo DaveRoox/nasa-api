@@ -28,7 +28,7 @@ public class NEOLookupResponse extends GenericResponse {
 	private Double absoluteMagnitudeH;
 	private List<EstimatedDiameter> estimatedDiameter;
 	private Boolean isPotentiallyHazardousAsteroid;
-	private List<CloseApproachItem> closeApproachData;
+	private List<CloseApproachInfo> closeApproachData;
 	private OrbitalData orbitalData;
 
 	public NEOLookupResponse() {
@@ -39,7 +39,7 @@ public class NEOLookupResponse extends GenericResponse {
 
 	public NEOLookupResponse(Integer responseCode, String rawResponse, String neoReferenceID, String name,
 			String nasaJplUrl, Double absoluteMagnitudeH, List<EstimatedDiameter> estimatedDiameter,
-			Boolean isPotentiallyHazardousAsteroid, List<CloseApproachItem> closeApproachData,
+			Boolean isPotentiallyHazardousAsteroid, List<CloseApproachInfo> closeApproachData,
 			OrbitalData orbitalData) {
 		super(responseCode, rawResponse);
 		this.neoReferenceID = neoReferenceID;
@@ -100,11 +100,11 @@ public class NEOLookupResponse extends GenericResponse {
 		this.isPotentiallyHazardousAsteroid = isPotentiallyHazardousAsteroid;
 	}
 
-	public List<CloseApproachItem> getCloseApproachData() {
+	public List<CloseApproachInfo> getCloseApproachData() {
 		return closeApproachData;
 	}
 
-	public void setCloseApproachData(List<CloseApproachItem> closeApproachData) {
+	public void setCloseApproachData(List<CloseApproachInfo> closeApproachData) {
 		this.closeApproachData = closeApproachData;
 	}
 
@@ -138,7 +138,7 @@ public class NEOLookupResponse extends GenericResponse {
 			
 			JSONArray jarr = jobj.getJSONArray(NEOLookupResponse.FIELD_CLOSE_APPROACH_DATA);
 			for(int i = 0; i < jarr.length(); i++) {
-				CloseApproachItem closeApproachItem = new CloseApproachItem();
+				CloseApproachInfo closeApproachItem = new CloseApproachInfo();
 				closeApproachItem.parse(jarr.getJSONObject(i));
 				closeApproachData.add(closeApproachItem);
 			}

@@ -12,7 +12,7 @@ public class APODRequest extends GenericRequest {
 	/* API-Dependent constants */
 	private static final String BASE_URL = "https://api.nasa.gov/planetary/apod";
 	private static final String BASE_STRING_DATE = "1995-6-16";
-	private static final String DATE_FORMAT = "yyyy-M-d";
+	private static final String DATE_FORMAT = "yyyy-MM-dd";
 	private static final String PARAM_DATE = "date";
 	private static final String PARAM_HD = "hd";
 

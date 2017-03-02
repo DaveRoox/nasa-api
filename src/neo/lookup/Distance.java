@@ -6,10 +6,10 @@ import org.json.JSONObject;
 public class Distance {
 
 	/* API-Dependent constants */
-	private static final String PARAM_ASTRONOMICAL = "astronomical";
-	private static final String PARAM_LUNAR = "lunar";
-	private static final String PARAM_KILOMETERS = "kilometers";
-	private static final String PARAM_MILES = "miles";
+	private static final String FIELD_ASTRONOMICAL = "astronomical";
+	private static final String FIELD_LUNAR = "lunar";
+	private static final String FIELD_KILOMETERS = "kilometers";
+	private static final String FIELD_MILES = "miles";
 
 	private Double astronomical;
 	private Double lunar;
@@ -60,10 +60,10 @@ public class Distance {
 	}
 
 	public void parse(JSONObject jobj) throws NumberFormatException, JSONException {
-		astronomical = Double.valueOf(jobj.getString(Distance.PARAM_ASTRONOMICAL));
-		kilometers = Double.valueOf(jobj.getString(Distance.PARAM_KILOMETERS));
-		lunar = Double.valueOf(jobj.getString(Distance.PARAM_LUNAR));
-		miles = Double.valueOf(jobj.getString(Distance.PARAM_MILES));
+		astronomical = Double.valueOf(jobj.getString(Distance.FIELD_ASTRONOMICAL));
+		kilometers = Double.valueOf(jobj.getString(Distance.FIELD_KILOMETERS));
+		lunar = Double.valueOf(jobj.getString(Distance.FIELD_LUNAR));
+		miles = Double.valueOf(jobj.getString(Distance.FIELD_MILES));
 	}
 
 }
