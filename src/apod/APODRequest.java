@@ -57,21 +57,6 @@ public class APODRequest extends GenericRequest {
 		this(sdf.parse(date), hd, apiKey);
 	}
 
-	/*public APODResponse send() throws Exception {
-
-		APODResponse apodResponse = new APODResponse();
-
-		String formattedDate = sdf.format(date);
-		String queryString = BASE_URL;
-		queryString += "?" + PARAM_APIKEY + "=" + apiKey;
-		queryString += "&" + PARAM_HD + "=" + hd;
-		queryString += "&" + PARAM_DATE + "=" + formattedDate;
-
-		Http.sendGet(queryString, apodResponse);
-
-		return apodResponse;
-	}*/
-
 	public Date getDate() {
 		return date;
 	}
