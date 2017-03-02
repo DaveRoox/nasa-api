@@ -145,6 +145,7 @@ public class NEOLookupResponse extends GenericResponse {
 			}
 			
 			orbitalData.parse(jobj.getJSONObject(NEOLookupResponse.FIELD_ORBITAL_DATA));
+			
 		} catch (JSONException | ParseException e) {
 			e.printStackTrace();
 		}
