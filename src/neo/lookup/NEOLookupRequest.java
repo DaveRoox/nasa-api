@@ -34,8 +34,6 @@ public class NEOLookupRequest extends GenericRequest {
 		String queryString = BASE_URL;
 		queryString += asteroidID;
 		queryString += "?" + PARAM_APIKEY + "=" + apiKey;
-		//if(asteroidID != null)
-		//	queryString += "&" + PARAM_ASTEROID_ID + "=" + asteroidID;
 		return queryString;
 	}
 
