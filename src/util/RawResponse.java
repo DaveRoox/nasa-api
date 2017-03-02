@@ -1,6 +1,6 @@
 package util;
 
-public class RawResponse {
+public abstract class RawResponse {
 	
 	protected Integer responseCode;
 	protected String rawResponse;
