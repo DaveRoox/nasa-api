@@ -1,10 +1,14 @@
 package apod;
 
+import java.text.ParseException;
 import java.util.Date;
 
-import util.RawResponse;
+import org.json.JSONException;
+import org.json.JSONObject;
 
-public class APODResponse extends RawResponse {
+import util.GenericResponse;
+
+public class APODResponse extends GenericResponse {
 	
 	/* API-Dependent constants */
 	public static final String FIELD_CODE = "code";
@@ -88,6 +92,23 @@ public class APODResponse extends RawResponse {
 		return "APODResponse [responseCode=" + responseCode + ", date=" + date + ", explanation=" + explanation
 				+ ", hdurl=" + hdurl + ", mediaType=" + mediaType + ", serviceVersion=" + serviceVersion + ", title="
 				+ title + ", url=" + url + "]";
+	}
+
+	@Override
+	public void fillObject() {
+		try {
+			System.out.println(rawResponse);
+			JSONObject jobj = new JSONObject(rawResponse);
+			this.setDate(APODRequest.sdf.parse(jobj.getString(APODResponse.FIELD_DATE)));
+			this.setExplanation(jobj.getString(APODResponse.FIELD_EXPL));
+			this.setHdurl(jobj.getString(APODResponse.FIELD_HDURL));
+			this.setMediaType(jobj.getString(APODResponse.FIELD_MEDIA_TYPE));
+			this.setServiceVersion(jobj.getString(APODResponse.FIELD_SERVICE_VERSION));
+			this.setTitle(jobj.getString(APODResponse.FIELD_TITLE));
+			this.setUrl(jobj.getString(APODResponse.FIELD_URL));
+		} catch (JSONException | ParseException e) {
+			e.printStackTrace();
+		}
 	}
 	
 

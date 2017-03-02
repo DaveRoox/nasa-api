@@ -25,7 +25,7 @@ public class NasaAPIs {
 	
 	public APODResponse apod(int year, int month, int day, Boolean hd) {
 		try {
-			return new APODRequest(year, month, day, hd, apiKey).send();
+			return (APODResponse) new APODRequest(year, month, day, hd, apiKey).send();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -38,7 +38,7 @@ public class NasaAPIs {
 	
 	public APODResponse apod(Boolean hd) {
 		try {
-			return new APODRequest(hd, apiKey).send();
+			return (APODResponse) new APODRequest(hd, apiKey).send();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

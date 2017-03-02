@@ -11,7 +11,7 @@ import javax.net.ssl.HttpsURLConnection;
 
 public class Http {
 
-	public static void sendGet(String url, RawResponse result) throws IOException {
+	public static void sendGet(String url, GenericResponse result) throws IOException {
 
 		URL furl = new URL(url);
 		HttpURLConnection con = (HttpURLConnection) furl.openConnection();

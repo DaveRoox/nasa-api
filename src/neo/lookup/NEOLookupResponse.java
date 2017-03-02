@@ -3,10 +3,14 @@ package neo.lookup;
 import java.util.ArrayList;
 import java.util.List;
 
-import util.RawResponse;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
-public class NEOLookupResponse  extends RawResponse {
-	
+import util.GenericResponse;
+
+public class NEOLookupResponse extends GenericResponse {
+
 	/* API-Dependent constants */
 	public static final String FIELD_NEO_REFERENCE_ID = "neo_reference_id";
 	public static final String FIELD_NAME = "name";
@@ -16,7 +20,7 @@ public class NEOLookupResponse  extends RawResponse {
 	public static final String FIELD_IS_POTENTIALLY_HAZARDOUS_ASTEROID = "is_potentially_hazardous_asteroid";
 	public static final String FIELD_CLOSE_APPROACH_DATA = "close_approach_data";
 	public static final String FIELD_ORBITAL_DATA = "orbital_data";
-	
+
 	private String neoReferenceID;
 	private String name;
 	private String nasaJplUrl;
@@ -25,7 +29,7 @@ public class NEOLookupResponse  extends RawResponse {
 	private Boolean isPotentiallyHazardousAsteroid;
 	private List<CloseApproachItem> closeApproachData;
 	private OrbitalData orbitalData;
-	
+
 	public NEOLookupResponse() {
 		estimatedDiameter = new ArrayList<>();
 		closeApproachData = new ArrayList<>();
@@ -108,6 +112,33 @@ public class NEOLookupResponse  extends RawResponse {
 
 	public void setOrbitalData(OrbitalData orbitalData) {
 		this.orbitalData = orbitalData;
+	}
+
+	@Override
+	public void fillObject() {
+		try {
+			System.out.println(responseCode);
+			JSONObject jobj = new JSONObject(rawResponse);
+			this.setNeoReferenceID(jobj.getString(NEOLookupResponse.FIELD_NEO_REFERENCE_ID));
+			this.setName(jobj.getString(NEOLookupResponse.FIELD_NAME));
+			this.setNasaJplUrl(jobj.getString(NEOLookupResponse.FIELD_NASA_JPL_URL));
+			this.setAbsoluteMagnitudeH(jobj.getDouble(NEOLookupResponse.FIELD_ABSOLUTE_MAGNITUDE_H));
+			this.setIsPotentiallyHazardousAsteroid(jobj.getBoolean(NEOLookupResponse.FIELD_IS_POTENTIALLY_HAZARDOUS_ASTEROID));
+			JSONObject estimatedDiameter = jobj.getJSONObject(NEOLookupResponse.FIELD_ESTIMATED_DIAMETER);
+			for(UnitOfMeasurement uom : UnitOfMeasurement.values()) {
+				EstimatedDiameter ed = new EstimatedDiameter();
+				ed.setUnitOfMeasurement(uom);
+				assert(ed.parse(estimatedDiameter.getJSONObject(uom.getValue())));
+				this.getEstimatedDiameter().add(ed);
+			}
+			JSONArray jarr = jobj.getJSONArray(NEOLookupResponse.FIELD_CLOSE_APPROACH_DATA);
+			for(int i = 0; i < jarr.length(); i++) {
+				CloseApproachItem closeApproachItem = new CloseApproachItem();
+				assert(closeApproachItem.parse(jarr.getJSONObject(i)));
+			}
+		} catch (JSONException e) {
+			e.printStackTrace();
+		}
 	}
 
 }
