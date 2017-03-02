@@ -15,10 +15,6 @@ public class NEOLookupRequest extends GenericRequest {
 		super(apiKey);
 		this.asteroidID = asteroidID;
 	}
-	
-	/*public NEOLookupRequest(String apiKey) {
-		super(apiKey);
-	}*/
 
 	public Integer getAsteroidID() {
 		return asteroidID;

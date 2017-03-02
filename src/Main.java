@@ -12,7 +12,7 @@ public class Main {
 		
 		NasaAPIs wrapper = new NasaAPIs("cUtZTKpfckrUO61AzkWoGL4AC94keFUW1zSrcD0A");
 		
-		APODResponse apodResponse = wrapper.apod();
+		APODResponse apodResponse = wrapper.apod(2017, 3, 2);
 		System.out.println(apodResponse.getHdurl());
 		
 		/* Cerco le informazioni sull'asteroide 3542518 */

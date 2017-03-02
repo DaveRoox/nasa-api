@@ -104,13 +104,13 @@ public class APODResponse extends GenericResponse {
 	public void fillObject() {
 		try {
 			JSONObject jobj = new JSONObject(rawResponse);
-			this.setDate(APODRequest.sdf.parse(jobj.getString(APODResponse.FIELD_DATE)));
-			this.setExplanation(jobj.getString(APODResponse.FIELD_EXPL));
-			this.setHdurl(jobj.getString(APODResponse.FIELD_HDURL));
-			this.setMediaType(jobj.getString(APODResponse.FIELD_MEDIA_TYPE));
-			this.setServiceVersion(jobj.getString(APODResponse.FIELD_SERVICE_VERSION));
-			this.setTitle(jobj.getString(APODResponse.FIELD_TITLE));
-			this.setUrl(jobj.getString(APODResponse.FIELD_URL));
+			date = APODRequest.sdf.parse(jobj.getString(APODResponse.FIELD_DATE));
+			explanation = jobj.getString(APODResponse.FIELD_EXPL);
+			hdurl = jobj.getString(APODResponse.FIELD_HDURL);
+			mediaType = jobj.getString(APODResponse.FIELD_MEDIA_TYPE);
+			serviceVersion = jobj.getString(APODResponse.FIELD_SERVICE_VERSION);
+			title = jobj.getString(APODResponse.FIELD_TITLE);
+			url = jobj.getString(APODResponse.FIELD_URL);
 		} catch (JSONException | ParseException e) {
 			e.printStackTrace();
 		}

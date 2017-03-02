@@ -48,12 +48,11 @@ public class EstimatedDiameter {
 		this.estimatedDiameterMax = estimatedDiameterMax;
 	}
 	
-	public void parse(JSONObject jobj) throws JSONException {
-
-		if(unitOfMeasurement == null)
-			return;
-		estimatedDiameterMax = jobj.getDouble(FIELD_ESTIMATED_DIAMETER_MAX);
-		estimatedDiameterMin = jobj.getDouble(FIELD_ESTIMATED_DIAMETER_MIN);
+	public void parse(JSONObject jobj, UnitOfMeasurement unitOfMeasurement) throws JSONException {
+		this.unitOfMeasurement = unitOfMeasurement;
+		JSONObject subObj = jobj.getJSONObject(unitOfMeasurement.getValue());
+		estimatedDiameterMax = subObj.getDouble(FIELD_ESTIMATED_DIAMETER_MAX);
+		estimatedDiameterMin = subObj.getDouble(FIELD_ESTIMATED_DIAMETER_MIN);
 	}
 
 }

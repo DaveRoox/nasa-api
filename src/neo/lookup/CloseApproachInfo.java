@@ -27,8 +27,6 @@ public class CloseApproachInfo {
 	private String orbitingBody;
 
 	public CloseApproachInfo() {
-		relativeVelocity = new Velocity();
-		missDistance = new Distance();
 	}
 
 	public CloseApproachInfo(Date closeApproachDate, Long epochDateCloseApproach, Velocity relativeVelocity,
@@ -82,13 +80,22 @@ public class CloseApproachInfo {
 	}
 	
 	public void parse(JSONObject jobj) throws ParseException, JSONException {
+		
 		closeApproachDate = sdf.parse(jobj.getString(CloseApproachInfo.FIELD_CLOSEST_APPROACH_DATE));
 		epochDateCloseApproach = jobj.getLong(CloseApproachInfo.FIELD_EPOCH_DATE_CLOSE_APPROACH);
+		
 		JSONObject velocity = jobj.getJSONObject(CloseApproachInfo.FIELD_RELATIVE_VELOCITY);
+		if(relativeVelocity == null)
+			relativeVelocity = new Velocity();
 		relativeVelocity.parse(velocity);
+		
 		JSONObject distance = jobj.getJSONObject(CloseApproachInfo.FIELD_MISS_DISTANCE);
+		if(missDistance == null)
+			missDistance = new Distance();
 		missDistance.parse(distance);
+		
 		orbitingBody = jobj.getString(CloseApproachInfo.FIELD_ORBITING_BODY);
+		
 	}
 
 }
