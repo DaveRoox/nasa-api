@@ -2,6 +2,9 @@ package nasaapis;
 
 import apod.APODRequest;
 import apod.APODResponse;
+import neo.feed.NEOFeedRequest;
+import neo.lookup.NEOLookupRequest;
+import neo.lookup.NEOLookupResponse;
 
 public class NasaAPIs {
 	
@@ -49,10 +52,20 @@ public class NasaAPIs {
 		return apod(false);
 	}
 	
-	/* NeoWs (Near Earth Object Web Service) / NEO */
+	/* NeoWs (Near Earth Object Web Service) */
 	
+	// NEO Feed
 	/*public NEOFeedResponse neoFeed(int startYear, int startMonth, int startDay, int endYear, int endMonth, int endDay) {
-		return new NEOFeedRequest(startYear, startMonth, startDay, endYear, endMonth, endDay, apiKey);
+		return (NEOFeedResponse) new NEOFeedRequest(startYear, startMonth, startDay, endYear, endMonth, endDay, apiKey);
 	}*/
 	
+	// NEO Lookup
+	public NEOLookupResponse neoLookup() {
+		try {
+			return (NEOLookupResponse) new NEOLookupRequest(apiKey).send();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
 }

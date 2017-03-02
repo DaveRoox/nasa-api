@@ -1,5 +1,6 @@
 package neo.lookup;
 
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,6 +34,7 @@ public class NEOLookupResponse extends GenericResponse {
 	public NEOLookupResponse() {
 		estimatedDiameter = new ArrayList<>();
 		closeApproachData = new ArrayList<>();
+		orbitalData = new OrbitalData();
 	}
 
 	public NEOLookupResponse(Integer responseCode, String rawResponse, String neoReferenceID, String name,
@@ -117,26 +119,33 @@ public class NEOLookupResponse extends GenericResponse {
 	@Override
 	public void fillObject() {
 		try {
+			
 			System.out.println(responseCode);
+			
 			JSONObject jobj = new JSONObject(rawResponse);
 			this.setNeoReferenceID(jobj.getString(NEOLookupResponse.FIELD_NEO_REFERENCE_ID));
 			this.setName(jobj.getString(NEOLookupResponse.FIELD_NAME));
 			this.setNasaJplUrl(jobj.getString(NEOLookupResponse.FIELD_NASA_JPL_URL));
 			this.setAbsoluteMagnitudeH(jobj.getDouble(NEOLookupResponse.FIELD_ABSOLUTE_MAGNITUDE_H));
 			this.setIsPotentiallyHazardousAsteroid(jobj.getBoolean(NEOLookupResponse.FIELD_IS_POTENTIALLY_HAZARDOUS_ASTEROID));
-			JSONObject estimatedDiameter = jobj.getJSONObject(NEOLookupResponse.FIELD_ESTIMATED_DIAMETER);
+			
+			JSONObject estimatedDiameterObject = jobj.getJSONObject(NEOLookupResponse.FIELD_ESTIMATED_DIAMETER);
 			for(UnitOfMeasurement uom : UnitOfMeasurement.values()) {
 				EstimatedDiameter ed = new EstimatedDiameter();
 				ed.setUnitOfMeasurement(uom);
-				assert(ed.parse(estimatedDiameter.getJSONObject(uom.getValue())));
-				this.getEstimatedDiameter().add(ed);
+				ed.parse(estimatedDiameterObject.getJSONObject(uom.getValue()));
+				estimatedDiameter.add(ed);
 			}
+			
 			JSONArray jarr = jobj.getJSONArray(NEOLookupResponse.FIELD_CLOSE_APPROACH_DATA);
 			for(int i = 0; i < jarr.length(); i++) {
 				CloseApproachItem closeApproachItem = new CloseApproachItem();
-				assert(closeApproachItem.parse(jarr.getJSONObject(i)));
+				closeApproachItem.parse(jarr.getJSONObject(i));
+				closeApproachData.add(closeApproachItem);
 			}
-		} catch (JSONException e) {
+			
+			orbitalData.parse(jobj.getJSONObject(NEOLookupResponse.FIELD_ORBITAL_DATA));
+		} catch (JSONException | ParseException e) {
 			e.printStackTrace();
 		}
 	}
