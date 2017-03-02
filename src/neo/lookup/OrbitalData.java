@@ -235,7 +235,6 @@ public class OrbitalData {
 	public void parse(JSONObject jobj) throws JSONException, ParseException {
 		orbitID = jobj.getString(OrbitalData.PARAM_ORBIT_ID);
 		orbitDeterminationDate = sdf.parse(jobj.getString(OrbitalData.PARAM_ORBIT_DETERMINATION_DATE));
-		System.out.println(orbitDeterminationDate.toString());
 		orbitUncertainty = Integer.valueOf(jobj.getString(OrbitalData.PARAM_ORBIT_UNCERTAINTY));
 		minimumOrbitIntersection = Double.valueOf(jobj.getString(OrbitalData.PARAM_MINIMUM_ORBIT_INTERSECTION));
 		jupiterTisserandInvariant = Double.valueOf(jobj.getString(OrbitalData.PARAM_JUPITER_TISSERAND_INVARIANT));

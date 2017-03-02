@@ -28,15 +28,6 @@ public class EstimatedDiameter {
 		return unitOfMeasurement;
 	}
 
-	public void parse(JSONObject jobj) throws JSONException {
-
-		if(unitOfMeasurement == null)
-			return;
-
-		estimatedDiameterMax = jobj.getDouble(PARAM_ESTIMATED_DIAMETER_MAX);
-		estimatedDiameterMin = jobj.getDouble(PARAM_ESTIMATED_DIAMETER_MIN);
-	}
-
 	public void setUnitOfMeasurement(UnitOfMeasurement unitOfMeasurement) {
 		this.unitOfMeasurement = unitOfMeasurement;
 	}
@@ -55,6 +46,14 @@ public class EstimatedDiameter {
 
 	public void setEstimatedDiameterMax(Double estimatedDiameterMax) {
 		this.estimatedDiameterMax = estimatedDiameterMax;
+	}
+	
+	public void parse(JSONObject jobj) throws JSONException {
+
+		if(unitOfMeasurement == null)
+			return;
+		estimatedDiameterMax = jobj.getDouble(PARAM_ESTIMATED_DIAMETER_MAX);
+		estimatedDiameterMin = jobj.getDouble(PARAM_ESTIMATED_DIAMETER_MIN);
 	}
 
 }

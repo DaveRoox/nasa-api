@@ -41,16 +41,6 @@ public class CloseApproachItem {
 		this.orbitingBody = orbitingBody;
 	}
 
-	public void parse(JSONObject jobj) throws ParseException, JSONException {
-		closeApproachDate = sdf.parse(jobj.getString(CloseApproachItem.PARAM_CLOSEST_APPROACH_DATE));
-		epochDateCloseApproach = jobj.getLong(CloseApproachItem.PARAM_EPOCH_DATE_CLOSE_APPROACH);
-		JSONObject velocity = jobj.getJSONObject(CloseApproachItem.PARAM_RELATIVE_VELOCITY);
-		relativeVelocity.parse(velocity);
-		JSONObject distance = jobj.getJSONObject(CloseApproachItem.PARAM_MISS_DISTANCE);
-		missDistance.parse(distance);
-		orbitingBody = jobj.getString(CloseApproachItem.PARAM_ORBITING_BODY);
-	}
-
 	public Date getCloseApproachDate() {
 		return closeApproachDate;
 	}
@@ -89,6 +79,16 @@ public class CloseApproachItem {
 
 	public void setOrbitingBody(String orbitingBody) {
 		this.orbitingBody = orbitingBody;
+	}
+	
+	public void parse(JSONObject jobj) throws ParseException, JSONException {
+		closeApproachDate = sdf.parse(jobj.getString(CloseApproachItem.PARAM_CLOSEST_APPROACH_DATE));
+		epochDateCloseApproach = jobj.getLong(CloseApproachItem.PARAM_EPOCH_DATE_CLOSE_APPROACH);
+		JSONObject velocity = jobj.getJSONObject(CloseApproachItem.PARAM_RELATIVE_VELOCITY);
+		relativeVelocity.parse(velocity);
+		JSONObject distance = jobj.getJSONObject(CloseApproachItem.PARAM_MISS_DISTANCE);
+		missDistance.parse(distance);
+		orbitingBody = jobj.getString(CloseApproachItem.PARAM_ORBITING_BODY);
 	}
 
 }

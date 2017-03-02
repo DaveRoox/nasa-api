@@ -7,9 +7,9 @@ public class Main {
 		
 		System.out.println("Ciao!");
 		NasaAPIs wrapper = new NasaAPIs("cUtZTKpfckrUO61AzkWoGL4AC94keFUW1zSrcD0A");
-		//APODResponse apodResponse = wrapper.apod(2005, 2, 26);
-		//System.out.println(apodResponse.getHdurl());
-		NEOLookupResponse neoLookupResponse = wrapper.neoLookup();
+		APODResponse apodResponse = wrapper.apod(2005, 2, 26);
+		System.out.println(apodResponse.getHdurl());
+		NEOLookupResponse neoLookupResponse = wrapper.neoLookup(567);
 		System.out.println(neoLookupResponse);
 	}
 }

@@ -32,7 +32,7 @@ public class NEOLookupResponse extends GenericResponse {
 	private OrbitalData orbitalData;
 
 	public NEOLookupResponse() {
-		estimatedDiameter = new ArrayList<>();
+		estimatedDiameter = new ArrayList<>(UnitOfMeasurement.values().length);
 		closeApproachData = new ArrayList<>();
 		orbitalData = new OrbitalData();
 	}
@@ -118,16 +118,15 @@ public class NEOLookupResponse extends GenericResponse {
 
 	@Override
 	public void fillObject() {
+		
 		try {
 			
-			System.out.println(responseCode);
-			
 			JSONObject jobj = new JSONObject(rawResponse);
-			this.setNeoReferenceID(jobj.getString(NEOLookupResponse.FIELD_NEO_REFERENCE_ID));
-			this.setName(jobj.getString(NEOLookupResponse.FIELD_NAME));
-			this.setNasaJplUrl(jobj.getString(NEOLookupResponse.FIELD_NASA_JPL_URL));
-			this.setAbsoluteMagnitudeH(jobj.getDouble(NEOLookupResponse.FIELD_ABSOLUTE_MAGNITUDE_H));
-			this.setIsPotentiallyHazardousAsteroid(jobj.getBoolean(NEOLookupResponse.FIELD_IS_POTENTIALLY_HAZARDOUS_ASTEROID));
+			neoReferenceID = jobj.getString(NEOLookupResponse.FIELD_NEO_REFERENCE_ID);
+			name = jobj.getString(NEOLookupResponse.FIELD_NAME);
+			nasaJplUrl = jobj.getString(NEOLookupResponse.FIELD_NASA_JPL_URL);
+			absoluteMagnitudeH = jobj.getDouble(NEOLookupResponse.FIELD_ABSOLUTE_MAGNITUDE_H);
+			isPotentiallyHazardousAsteroid = jobj.getBoolean(NEOLookupResponse.FIELD_IS_POTENTIALLY_HAZARDOUS_ASTEROID);
 			
 			JSONObject estimatedDiameterObject = jobj.getJSONObject(NEOLookupResponse.FIELD_ESTIMATED_DIAMETER);
 			for(UnitOfMeasurement uom : UnitOfMeasurement.values()) {

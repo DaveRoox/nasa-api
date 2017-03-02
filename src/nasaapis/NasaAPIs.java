@@ -68,4 +68,13 @@ public class NasaAPIs {
 		}
 		return null;
 	}
+	
+	public NEOLookupResponse neoLookup(int asteroidID) {
+		try {
+			return (NEOLookupResponse) new NEOLookupRequest(asteroidID, apiKey).send();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
 }
