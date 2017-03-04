@@ -17,7 +17,7 @@ public class APODRequest extends GenericRequest {
 	private static final String PARAM_HD = "hd";
 
 	/* Utility SimpleDateFormatter */
-	public static SimpleDateFormat sdf = new SimpleDateFormat(DATE_FORMAT);
+	private static SimpleDateFormat sdf = new SimpleDateFormat(DATE_FORMAT);
 
 	private static Date BASE_DATE = null;
 

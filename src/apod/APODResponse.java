@@ -1,25 +1,27 @@
 package apod;
 
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import org.json.JSONException;
-import org.json.JSONObject;
 
 import util.GenericResponse;
 
 public class APODResponse extends GenericResponse {
 	
 	/* API-Dependent constants */
-	public static final String FIELD_CODE = "code";
-	public static final String FIELD_MSG = "msg";
-	public static final String FIELD_DATE = "date";
-	public static final String FIELD_EXPL = "explanation";
-	public static final String FIELD_HDURL = "hdurl";
-	public static final String FIELD_MEDIA_TYPE = "media_type";
-	public static final String FIELD_SERVICE_VERSION = "service_version";
-	public static final String FIELD_TITLE = "title";
-	public static final String FIELD_URL = "url";
+	private static final String DATE_FORMAT = "yyyy-MM-dd";
+	private static final String FIELD_DATE = "date";
+	private static final String FIELD_EXPLANATION = "explanation";
+	private static final String FIELD_HDURL = "hdurl";
+	private static final String FIELD_MEDIA_TYPE = "media_type";
+	private static final String FIELD_SERVICE_VERSION = "service_version";
+	private static final String FIELD_TITLE = "title";
+	private static final String FIELD_URL = "url";
+	
+	/* Utility SimpleDateFormatter */
+	private static SimpleDateFormat sdf = new SimpleDateFormat(DATE_FORMAT);
 	
 	private Date date;
 	private String explanation;
@@ -30,18 +32,6 @@ public class APODResponse extends GenericResponse {
 	private String url;
 	
 	public APODResponse() {
-	}
-	
-	public APODResponse(Integer responseCode, Date date, String explanation, String hdurl, String mediaType, String serviceVersion,
-			String title, String url) {
-		super();
-		this.date = date;
-		this.explanation = explanation;
-		this.hdurl = hdurl;
-		this.mediaType = mediaType;
-		this.serviceVersion = serviceVersion;
-		this.title = title;
-		this.url = url;
 	}
 	
 	public Date getDate() {
@@ -103,14 +93,13 @@ public class APODResponse extends GenericResponse {
 	@Override
 	public void fillObject() {
 		try {
-			JSONObject jobj = new JSONObject(rawResponse);
-			date = APODRequest.sdf.parse(jobj.getString(APODResponse.FIELD_DATE));
-			explanation = jobj.getString(APODResponse.FIELD_EXPL);
-			hdurl = jobj.getString(APODResponse.FIELD_HDURL);
-			mediaType = jobj.getString(APODResponse.FIELD_MEDIA_TYPE);
-			serviceVersion = jobj.getString(APODResponse.FIELD_SERVICE_VERSION);
-			title = jobj.getString(APODResponse.FIELD_TITLE);
-			url = jobj.getString(APODResponse.FIELD_URL);
+			date = sdf.parse(jsonObject.getString(APODResponse.FIELD_DATE));
+			explanation = jsonObject.getString(APODResponse.FIELD_EXPLANATION);
+			hdurl = jsonObject.getString(APODResponse.FIELD_HDURL);
+			mediaType = jsonObject.getString(APODResponse.FIELD_MEDIA_TYPE);
+			serviceVersion = jsonObject.getString(APODResponse.FIELD_SERVICE_VERSION);
+			title = jsonObject.getString(APODResponse.FIELD_TITLE);
+			url = jsonObject.getString(APODResponse.FIELD_URL);
 		} catch (JSONException | ParseException e) {
 			e.printStackTrace();
 		}
