@@ -29,16 +29,6 @@ public class CloseApproachInfo {
 	public CloseApproachInfo() {
 	}
 
-	public CloseApproachInfo(Date closeApproachDate, Long epochDateCloseApproach, Velocity relativeVelocity,
-			Distance missDistance, String orbitingBody) {
-		super();
-		this.closeApproachDate = closeApproachDate;
-		this.epochDateCloseApproach = epochDateCloseApproach;
-		this.relativeVelocity = relativeVelocity;
-		this.missDistance = missDistance;
-		this.orbitingBody = orbitingBody;
-	}
-
 	public Date getCloseApproachDate() {
 		return closeApproachDate;
 	}

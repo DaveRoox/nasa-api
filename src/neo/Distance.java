@@ -19,14 +19,6 @@ public class Distance {
 	public Distance() {
 	}
 
-	public Distance(Double astronomical, Double lunar, Double kilometers, Double miles) {
-		super();
-		this.astronomical = astronomical;
-		this.lunar = lunar;
-		this.kilometers = kilometers;
-		this.miles = miles;
-	}
-
 	public Double getAstronomical() {
 		return astronomical;
 	}

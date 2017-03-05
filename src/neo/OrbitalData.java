@@ -55,31 +55,6 @@ public class OrbitalData {
 	public OrbitalData() {
 	}
 
-	public OrbitalData(String orbitID, Date orbitDeterminationDate, Integer orbitUncertainty,
-			Double minimumOrbitIntersection, Double jupiterTisserandInvariant, Double epochOsculation,
-			Double eccentricity, Double semiMajorAxis, Double inclination, Double ascendingNodeLongitude,
-			Double orbital_period, Double perihelionDistance, Double perihelionArgument, Double aphelionDistance,
-			Double perihelionTime, Double meanAnomaly, Double meanMotion, String equinox) {
-		this.orbitID = orbitID;
-		this.orbitDeterminationDate = orbitDeterminationDate;
-		this.orbitUncertainty = orbitUncertainty;
-		this.minimumOrbitIntersection = minimumOrbitIntersection;
-		this.jupiterTisserandInvariant = jupiterTisserandInvariant;
-		this.epochOsculation = epochOsculation;
-		this.eccentricity = eccentricity;
-		this.semiMajorAxis = semiMajorAxis;
-		this.inclination = inclination;
-		this.ascendingNodeLongitude = ascendingNodeLongitude;
-		this.orbital_period = orbital_period;
-		this.perihelionDistance = perihelionDistance;
-		this.perihelionArgument = perihelionArgument;
-		this.aphelionDistance = aphelionDistance;
-		this.perihelionTime = perihelionTime;
-		this.meanAnomaly = meanAnomaly;
-		this.meanMotion = meanMotion;
-		this.equinox = equinox;
-	}
-
 	public static SimpleDateFormat getSdf() {
 		return sdf;
 	}

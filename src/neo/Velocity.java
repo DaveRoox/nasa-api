@@ -17,13 +17,6 @@ public class Velocity {
 	public Velocity() {
 	}
 
-	public Velocity(Double kilometersPerSecond, Double kilometersPerHour, Double milesPerHour) {
-		super();
-		this.kilometersPerSecond = kilometersPerSecond;
-		this.kilometersPerHour = kilometersPerHour;
-		this.milesPerHour = milesPerHour;
-	}
-
 	public Double getKilometersPerSecond() {
 		return kilometersPerSecond;
 	}
@@ -49,6 +42,7 @@ public class Velocity {
 	}
 
 	public void parse(JSONObject jobj) throws NumberFormatException, JSONException {
+		
 		if(jobj.has(FIELD_KILOMETERS_PER_SECOND))
 			kilometersPerSecond = Double.valueOf(jobj.getString(FIELD_KILOMETERS_PER_SECOND));
 
@@ -57,6 +51,7 @@ public class Velocity {
 
 		if(jobj.has(FIELD_MILES_PER_HOUR))
 			milesPerHour = Double.valueOf(jobj.getString(FIELD_MILES_PER_HOUR));
+		
 	}
 
 }

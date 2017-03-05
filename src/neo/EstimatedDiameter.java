@@ -16,14 +16,6 @@ public class EstimatedDiameter {
 	public EstimatedDiameter() {
 	}
 
-	public EstimatedDiameter(UnitOfMeasurement unitOfMeasurement, Double estimatedDiameterMin,
-			Double estimatedDiameterMax) {
-		super();
-		this.unitOfMeasurement = unitOfMeasurement;
-		this.estimatedDiameterMin = estimatedDiameterMin;
-		this.estimatedDiameterMax = estimatedDiameterMax;
-	}
-
 	public UnitOfMeasurement getUnitOfMeasurement() {
 		return unitOfMeasurement;
 	}
