@@ -1,4 +1,4 @@
-package neo.lookup;
+package neo;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -60,10 +60,18 @@ public class Distance {
 	}
 
 	public void parse(JSONObject jobj) throws NumberFormatException, JSONException {
-		astronomical = Double.valueOf(jobj.getString(Distance.FIELD_ASTRONOMICAL));
-		kilometers = Double.valueOf(jobj.getString(Distance.FIELD_KILOMETERS));
-		lunar = Double.valueOf(jobj.getString(Distance.FIELD_LUNAR));
-		miles = Double.valueOf(jobj.getString(Distance.FIELD_MILES));
+
+		if(jobj.has(FIELD_ASTRONOMICAL))
+			astronomical = Double.valueOf(jobj.getString(FIELD_ASTRONOMICAL));
+
+		if(jobj.has(FIELD_KILOMETERS))
+			kilometers = Double.valueOf(jobj.getString(FIELD_KILOMETERS));
+
+		if(jobj.has(FIELD_LUNAR))
+			lunar = Double.valueOf(jobj.getString(FIELD_LUNAR));
+
+		if(jobj.has(FIELD_MILES))
+			miles = Double.valueOf(jobj.getString(FIELD_MILES));
 	}
 
 }

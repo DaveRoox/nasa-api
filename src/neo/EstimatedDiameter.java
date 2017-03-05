@@ -1,4 +1,4 @@
-package neo.lookup;
+package neo;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -47,12 +47,21 @@ public class EstimatedDiameter {
 	public void setEstimatedDiameterMax(Double estimatedDiameterMax) {
 		this.estimatedDiameterMax = estimatedDiameterMax;
 	}
-	
+
 	public void parse(JSONObject jobj, UnitOfMeasurement unitOfMeasurement) throws JSONException {
-		this.unitOfMeasurement = unitOfMeasurement;
-		JSONObject subObj = jobj.getJSONObject(unitOfMeasurement.getValue());
-		estimatedDiameterMax = subObj.getDouble(FIELD_ESTIMATED_DIAMETER_MAX);
-		estimatedDiameterMin = subObj.getDouble(FIELD_ESTIMATED_DIAMETER_MIN);
+
+		if(jobj.has(unitOfMeasurement.getValue())) {
+			
+			this.unitOfMeasurement = unitOfMeasurement;
+			
+			JSONObject subObj = jobj.getJSONObject(unitOfMeasurement.getValue());
+
+			if(subObj.has(FIELD_ESTIMATED_DIAMETER_MAX))
+				estimatedDiameterMax = subObj.getDouble(FIELD_ESTIMATED_DIAMETER_MAX);
+
+			if(subObj.has(FIELD_ESTIMATED_DIAMETER_MIN))
+				estimatedDiameterMin = subObj.getDouble(FIELD_ESTIMATED_DIAMETER_MIN);
+		}
 	}
 
 }

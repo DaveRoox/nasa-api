@@ -1,4 +1,4 @@
-package neo.lookup;
+package neo;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -233,24 +233,61 @@ public class OrbitalData {
 	}
 
 	public void parse(JSONObject jobj) throws JSONException, ParseException {
-		orbitID = jobj.getString(OrbitalData.FIELD_ORBIT_ID);
-		orbitDeterminationDate = sdf.parse(jobj.getString(OrbitalData.FIELD_ORBIT_DETERMINATION_DATE));
-		orbitUncertainty = Integer.valueOf(jobj.getString(OrbitalData.FIELD_ORBIT_UNCERTAINTY));
-		minimumOrbitIntersection = Double.valueOf(jobj.getString(OrbitalData.FIELD_MINIMUM_ORBIT_INTERSECTION));
-		jupiterTisserandInvariant = Double.valueOf(jobj.getString(OrbitalData.FIELD_JUPITER_TISSERAND_INVARIANT));
-		epochOsculation = Double.valueOf(jobj.getString(OrbitalData.FIELD_EPOCH_OSCULATION));
-		eccentricity = Double.valueOf(jobj.getString(OrbitalData.FIELD_ECCENTRICITY));
-		semiMajorAxis = Double.valueOf(jobj.getString(OrbitalData.FIELD_SEMI_MAJOR_AXIS));
-		inclination = Double.valueOf(jobj.getString(OrbitalData.FIELD_INCLINATION));
-		ascendingNodeLongitude = Double.valueOf(jobj.getString(OrbitalData.FIELD_ASCENDING_NODE_LONGITUDE));
-		orbital_period = Double.valueOf(jobj.getString(OrbitalData.FIELD_ORBITAL_PERIOD));
-		perihelionDistance = Double.valueOf(jobj.getString(OrbitalData.FIELD_PERIHELION_DISTANCE));
-		perihelionArgument = Double.valueOf(jobj.getString(OrbitalData.FIELD_PERIHELION_ARGUMENT));
-		aphelionDistance = Double.valueOf(jobj.getString(OrbitalData.FIELD_APHELION_DISTANCE));
-		perihelionTime = Double.valueOf(jobj.getString(OrbitalData.FIELD_PERIHELION_TIME));
-		meanAnomaly = Double.valueOf(jobj.getString(OrbitalData.FIELD_MEAN_ANOMALY));
-		meanMotion = Double.valueOf(jobj.getString(OrbitalData.FIELD_MEAN_MOTION));
-		equinox = jobj.getString(OrbitalData.FIELD_EQUINOX);
+
+		if(jobj.has(FIELD_ORBIT_ID))
+			orbitID = jobj.getString(FIELD_ORBIT_ID);
+
+		if(jobj.has(FIELD_ORBIT_DETERMINATION_DATE))
+			orbitDeterminationDate = sdf.parse(jobj.getString(FIELD_ORBIT_DETERMINATION_DATE));
+
+		if(jobj.has(FIELD_ORBIT_UNCERTAINTY))
+			orbitUncertainty = Integer.valueOf(jobj.getString(FIELD_ORBIT_UNCERTAINTY));
+
+		if(jobj.has(FIELD_MINIMUM_ORBIT_INTERSECTION))
+			minimumOrbitIntersection = Double.valueOf(jobj.getString(FIELD_MINIMUM_ORBIT_INTERSECTION));
+
+		if(jobj.has(FIELD_JUPITER_TISSERAND_INVARIANT))
+			jupiterTisserandInvariant = Double.valueOf(jobj.getString(FIELD_JUPITER_TISSERAND_INVARIANT));
+
+		if(jobj.has(FIELD_EPOCH_OSCULATION))
+			epochOsculation = Double.valueOf(jobj.getString(FIELD_EPOCH_OSCULATION));
+
+		if(jobj.has(FIELD_ECCENTRICITY))
+			eccentricity = Double.valueOf(jobj.getString(FIELD_ECCENTRICITY));
+
+		if(jobj.has(FIELD_SEMI_MAJOR_AXIS))
+			semiMajorAxis = Double.valueOf(jobj.getString(FIELD_SEMI_MAJOR_AXIS));
+
+		if(jobj.has(FIELD_INCLINATION))
+			inclination = Double.valueOf(jobj.getString(FIELD_INCLINATION));
+
+		if(jobj.has(FIELD_ASCENDING_NODE_LONGITUDE))
+			ascendingNodeLongitude = Double.valueOf(jobj.getString(FIELD_ASCENDING_NODE_LONGITUDE));
+
+		if(jobj.has(FIELD_ORBITAL_PERIOD))
+			orbital_period = Double.valueOf(jobj.getString(FIELD_ORBITAL_PERIOD));
+
+		if(jobj.has(FIELD_PERIHELION_DISTANCE))
+			perihelionDistance = Double.valueOf(jobj.getString(FIELD_PERIHELION_DISTANCE));
+
+		if(jobj.has(FIELD_PERIHELION_ARGUMENT))
+			perihelionArgument = Double.valueOf(jobj.getString(FIELD_PERIHELION_ARGUMENT));
+
+		if(jobj.has(FIELD_APHELION_DISTANCE))
+			aphelionDistance = Double.valueOf(jobj.getString(FIELD_APHELION_DISTANCE));
+
+		if(jobj.has(FIELD_PERIHELION_TIME))
+			perihelionTime = Double.valueOf(jobj.getString(FIELD_PERIHELION_TIME));
+
+		if(jobj.has(FIELD_MEAN_ANOMALY))
+			meanAnomaly = Double.valueOf(jobj.getString(FIELD_MEAN_ANOMALY));
+
+		if(jobj.has(FIELD_MEAN_MOTION))
+			meanMotion = Double.valueOf(jobj.getString(FIELD_MEAN_MOTION));
+
+		if(jobj.has(FIELD_EQUINOX))
+			equinox = jobj.getString(FIELD_EQUINOX);
+		
 	}
 
 }

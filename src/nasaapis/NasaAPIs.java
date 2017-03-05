@@ -2,6 +2,10 @@ package nasaapis;
 
 import apod.APODRequest;
 import apod.APODResponse;
+import neo.browse.NEOBrowseAllRequest;
+import neo.browse.NEOBrowseAllResponse;
+import neo.browse.NEOBrowseRequest;
+import neo.browse.NEOBrowseResponse;
 import neo.feed.NEOFeedRequest;
 import neo.lookup.NEOLookupRequest;
 import neo.lookup.NEOLookupResponse;
@@ -73,6 +77,24 @@ public class NasaAPIs {
 	public NEOLookupResponse neoLookup(int asteroidID) {
 		try {
 			return (NEOLookupResponse) new NEOLookupRequest(asteroidID, apiKey).send();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
+	public NEOBrowseResponse neoBrowse() {
+		try {
+			return (NEOBrowseResponse) new NEOBrowseRequest(apiKey).send();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
+	public NEOBrowseAllResponse neoBrowseAll() {
+		try {
+			return (NEOBrowseAllResponse) new NEOBrowseAllRequest(apiKey).send();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

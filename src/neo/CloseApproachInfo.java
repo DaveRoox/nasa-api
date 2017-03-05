@@ -1,4 +1,4 @@
-package neo.lookup;
+package neo;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -78,24 +78,32 @@ public class CloseApproachInfo {
 	public void setOrbitingBody(String orbitingBody) {
 		this.orbitingBody = orbitingBody;
 	}
-	
+
 	public void parse(JSONObject jobj) throws ParseException, JSONException {
-		
-		closeApproachDate = sdf.parse(jobj.getString(CloseApproachInfo.FIELD_CLOSEST_APPROACH_DATE));
-		epochDateCloseApproach = jobj.getLong(CloseApproachInfo.FIELD_EPOCH_DATE_CLOSE_APPROACH);
-		
-		JSONObject velocity = jobj.getJSONObject(CloseApproachInfo.FIELD_RELATIVE_VELOCITY);
-		if(relativeVelocity == null)
-			relativeVelocity = new Velocity();
-		relativeVelocity.parse(velocity);
-		
-		JSONObject distance = jobj.getJSONObject(CloseApproachInfo.FIELD_MISS_DISTANCE);
-		if(missDistance == null)
-			missDistance = new Distance();
-		missDistance.parse(distance);
-		
-		orbitingBody = jobj.getString(CloseApproachInfo.FIELD_ORBITING_BODY);
-		
+
+		if(jobj.has(FIELD_CLOSEST_APPROACH_DATE))
+			closeApproachDate = sdf.parse(jobj.getString(FIELD_CLOSEST_APPROACH_DATE));
+
+		if(jobj.has(FIELD_EPOCH_DATE_CLOSE_APPROACH))
+			epochDateCloseApproach = jobj.getLong(FIELD_EPOCH_DATE_CLOSE_APPROACH);
+
+		if(jobj.has(FIELD_RELATIVE_VELOCITY)) {
+			JSONObject velocity = jobj.getJSONObject(FIELD_RELATIVE_VELOCITY);
+			if(relativeVelocity == null)
+				relativeVelocity = new Velocity();
+			relativeVelocity.parse(velocity);
+		}
+
+		if(jobj.has(FIELD_MISS_DISTANCE)) {
+			JSONObject distance = jobj.getJSONObject(FIELD_MISS_DISTANCE);
+			if(missDistance == null)
+				missDistance = new Distance();
+			missDistance.parse(distance);
+		}
+
+		if(jobj.has(FIELD_ORBITING_BODY))
+			orbitingBody = jobj.getString(FIELD_ORBITING_BODY);
+
 	}
 
 }

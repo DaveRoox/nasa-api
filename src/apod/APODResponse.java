@@ -93,13 +93,28 @@ public class APODResponse extends GenericResponse {
 	@Override
 	public void fillObject() {
 		try {
-			date = sdf.parse(jsonObject.getString(APODResponse.FIELD_DATE));
-			explanation = jsonObject.getString(APODResponse.FIELD_EXPLANATION);
-			hdurl = jsonObject.getString(APODResponse.FIELD_HDURL);
-			mediaType = jsonObject.getString(APODResponse.FIELD_MEDIA_TYPE);
-			serviceVersion = jsonObject.getString(APODResponse.FIELD_SERVICE_VERSION);
-			title = jsonObject.getString(APODResponse.FIELD_TITLE);
-			url = jsonObject.getString(APODResponse.FIELD_URL);
+			
+			if(jsonObject.has(FIELD_DATE))
+				date = sdf.parse(jsonObject.getString(FIELD_DATE));
+			
+			if(jsonObject.has(FIELD_EXPLANATION))
+				explanation = jsonObject.getString(FIELD_EXPLANATION);
+			
+			if(jsonObject.has(FIELD_HDURL))
+				hdurl = jsonObject.getString(FIELD_HDURL);
+			
+			if(jsonObject.has(FIELD_MEDIA_TYPE))
+				mediaType = jsonObject.getString(FIELD_MEDIA_TYPE);
+			
+			if(jsonObject.has(FIELD_SERVICE_VERSION))
+				serviceVersion = jsonObject.getString(FIELD_SERVICE_VERSION);
+			
+			if(jsonObject.has(FIELD_TITLE))
+				title = jsonObject.getString(FIELD_TITLE);
+			
+			if(jsonObject.has(FIELD_URL))
+				url = jsonObject.getString(FIELD_URL);
+			
 		} catch (JSONException | ParseException e) {
 			e.printStackTrace();
 		}

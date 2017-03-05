@@ -1,4 +1,4 @@
-package neo.lookup;
+package neo;
 
 public enum UnitOfMeasurement {
 	

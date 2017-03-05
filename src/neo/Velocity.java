@@ -1,4 +1,4 @@
-package neo.lookup;
+package neo;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -49,9 +49,14 @@ public class Velocity {
 	}
 
 	public void parse(JSONObject jobj) throws NumberFormatException, JSONException {
-		kilometersPerSecond = Double.valueOf(jobj.getString(Velocity.FIELD_KILOMETERS_PER_SECOND));
-		kilometersPerHour = Double.valueOf(jobj.getString(Velocity.FIELD_KILOMETERS_PER_HOUR));
-		milesPerHour = Double.valueOf(jobj.getString(Velocity.FIELD_MILES_PER_HOUR));
+		if(jobj.has(FIELD_KILOMETERS_PER_SECOND))
+			kilometersPerSecond = Double.valueOf(jobj.getString(FIELD_KILOMETERS_PER_SECOND));
+
+		if(jobj.has(FIELD_KILOMETERS_PER_HOUR))
+			kilometersPerHour = Double.valueOf(jobj.getString(FIELD_KILOMETERS_PER_HOUR));
+
+		if(jobj.has(FIELD_MILES_PER_HOUR))
+			milesPerHour = Double.valueOf(jobj.getString(FIELD_MILES_PER_HOUR));
 	}
 
 }

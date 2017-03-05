@@ -7,11 +7,13 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
+import org.json.JSONException;
+
 public class Http {
 
 	private static boolean print = false;
 
-	public static void sendGet(String url, GenericResponse result) throws IOException {
+	public static void sendGet(String url, GenericResponse result) throws IOException, JSONException {
 
 		URL furl = new URL(url);
 		HttpURLConnection con = (HttpURLConnection) furl.openConnection();
@@ -46,6 +48,7 @@ public class Http {
 		in.close();
 
 		result.setRawResponse(response.toString());
+		result.parse();
 
 		if(print)
 			System.out.println(result);

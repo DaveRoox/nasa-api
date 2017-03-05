@@ -15,7 +15,6 @@ public abstract class GenericRequest {
 		GenericResponse response = newResponse();
 		String queryString = getQueryString();
 		Http.sendGet(queryString, response);
-		response.parse();
 		return response;
 	}
 	
