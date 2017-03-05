@@ -5,11 +5,8 @@ import java.util.Date;
 import apod.APODResponse;
 import nasaapis.NasaAPIs;
 import neo.CloseApproachInfo;
-import neo.Links;
 import neo.NearEarthObject;
-import neo.browse.NEOBrowseAllRequest;
-import neo.browse.NEOBrowseAllResponse;
-import neo.browse.NEOBrowseResponse;
+import neo.browse.NEOBrowseResponseCollector;
 import neo.lookup.NEOLookupResponse;
 
 public class Main {
@@ -17,11 +14,12 @@ public class Main {
 		
 		NasaAPIs wrapper = new NasaAPIs("cUtZTKpfckrUO61AzkWoGL4AC94keFUW1zSrcD0A");
 		
+		/* APOD Example */
 		APODResponse apodResponse = wrapper.apod(2017, 3, 4);
 		System.out.println(apodResponse.getHdurl());
 		
-		/* Cerco le informazioni sull'asteroide 3542518 */
-		NEOLookupResponse neoLookupResponse = wrapper.neoLookup(3542518);
+		/* NeoLookup Example */
+		NEOLookupResponse neoLookupResponse = wrapper.neoLookup(3542520);
 		NearEarthObject neo = neoLookupResponse.getNearEarthObject();
 		try {
 			System.out.println("Asteroid " + neo.getNeoReferenceID() + (neo.getIsPotentiallyHazardousAsteroid()? " IS " : " is NOT ") + "potentially hazardous!");
@@ -49,20 +47,12 @@ public class Main {
 			e.printStackTrace();
 		}
 		
-		NEOBrowseResponse neoBrowserResponse = wrapper.neoBrowse();
-		Links links = neoBrowserResponse.getLinks();
-		System.out.println("Self is " + links.getSelf());
-		System.out.println("Prev is " + links.getPrev());
-		System.out.println("Next is " + links.getNext());
-		System.out.println(neoBrowserResponse);
-		int j = 0;
-		for(NearEarthObject nearEarthObject : neoBrowserResponse.getNearEarthObjects()) {
-			System.out.println(++j + ") Asteroid " + nearEarthObject.getNeoReferenceID() + (nearEarthObject.getIsPotentiallyHazardousAsteroid()? " IS " : " is NOT ") + "potentially hazardous!");
+		/* NeoBrowse Example */
+		NEOBrowseResponseCollector neoBrowseResponseCollector = wrapper.neoBrowseCollector();
+		neoBrowseResponseCollector.collectTillPage(6);
+		int i = 0;
+		for(NearEarthObject neoo : neoBrowseResponseCollector.getNeoObjects()) {
+			System.out.println(++i + ".\tAsteroid " + neoo.getName() + " [" + neoo.getNeoReferenceID() + "]");
 		}
-		
-		NEOBrowseAllResponse neoBrowseAllResponse = wrapper.neoBrowseAll();
-		j = 0;
-		//for(NearEarthObject x : neoBrowseAllResponse.getNearEarthObjects())
-		//	System.out.println(++j + ") Asteroid " + x.getNeoReferenceID() + (x.getIsPotentiallyHazardousAsteroid()? " IS " : " is NOT ") + "potentially hazardous!");
 	}
 }

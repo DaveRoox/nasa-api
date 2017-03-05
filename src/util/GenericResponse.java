@@ -6,7 +6,7 @@ import org.json.JSONObject;
 public abstract class GenericResponse {
 	
 	/* API-Dependent constants */
-	private static final String FIELD_CODE = "code";
+	//private static final String FIELD_CODE = "code";
 	private static final String FIELD_MSG = "msg";
 	
 	protected Integer responseCode;
@@ -64,6 +64,7 @@ public abstract class GenericResponse {
 	}
 	
 	private void handleError() {
+		// TODO: Replace print with exception
 		try {
 			System.err.print("[Response code " + responseCode + "]");
 			System.err.println(jsonObject != null? ": " + jsonObject.getString(GenericResponse.FIELD_MSG) : "");

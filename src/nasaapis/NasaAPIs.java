@@ -2,11 +2,9 @@ package nasaapis;
 
 import apod.APODRequest;
 import apod.APODResponse;
-import neo.browse.NEOBrowseAllRequest;
-import neo.browse.NEOBrowseAllResponse;
 import neo.browse.NEOBrowseRequest;
 import neo.browse.NEOBrowseResponse;
-import neo.feed.NEOFeedRequest;
+import neo.browse.NEOBrowseResponseCollector;
 import neo.lookup.NEOLookupRequest;
 import neo.lookup.NEOLookupResponse;
 
@@ -66,38 +64,20 @@ public class NasaAPIs {
 	// NEO Lookup
 	/* It's just an example, this method won't be present in the final release */
 	public NEOLookupResponse neoLookup() {
-		try {
-			return (NEOLookupResponse) new NEOLookupRequest(3542519, apiKey).send();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return null;
+		return (NEOLookupResponse) new NEOLookupRequest(3542519, apiKey).send();
 	}
 	
+	/* NeoLookup */
 	public NEOLookupResponse neoLookup(int asteroidID) {
-		try {
-			return (NEOLookupResponse) new NEOLookupRequest(asteroidID, apiKey).send();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return null;
+		return (NEOLookupResponse) new NEOLookupRequest(asteroidID, apiKey).send();
 	}
 	
+	/* NeoBrowse */
 	public NEOBrowseResponse neoBrowse() {
-		try {
-			return (NEOBrowseResponse) new NEOBrowseRequest(apiKey).send();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return null;
+		return (NEOBrowseResponse) new NEOBrowseRequest(apiKey).send();
 	}
 	
-	public NEOBrowseAllResponse neoBrowseAll() {
-		try {
-			return (NEOBrowseAllResponse) new NEOBrowseAllRequest(apiKey).send();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return null;
+	public NEOBrowseResponseCollector neoBrowseCollector() {
+		return new NEOBrowseResponseCollector((NEOBrowseResponse) new NEOBrowseRequest(apiKey).send());
 	}
 }

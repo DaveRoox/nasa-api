@@ -7,7 +7,7 @@ public class NEOLookupRequest extends GenericRequest {
 
 	/* API-Dependent constants */
 	private static final String BASE_URL = "https://api.nasa.gov/neo/rest/v1/neo/";
-	private static final String PARAM_ASTEROID_ID = "asteroid_id";
+	//private static final String PARAM_ASTEROID_ID = "asteroid_id";
 
 	private Integer asteroidID;
 	

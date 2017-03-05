@@ -1,5 +1,9 @@
 package util;
 
+import java.io.IOException;
+
+import org.json.JSONException;
+
 public abstract class GenericRequest {
 
 	/* API-Dependent constants */
@@ -11,10 +15,14 @@ public abstract class GenericRequest {
 		this.apiKey = apiKey;
 	}
 
-	public GenericResponse send() throws Exception {
+	public GenericResponse send() {
 		GenericResponse response = newResponse();
 		String queryString = getQueryString();
-		Http.sendGet(queryString, response);
+		try {
+			Http.sendGet(queryString, response);
+		} catch (IOException | JSONException e) {
+			e.printStackTrace();
+		}
 		return response;
 	}
 	

@@ -67,28 +67,20 @@ public class NEOBrowseResponse extends GenericResponse {
 				page.parse(jsonObject.getJSONObject(FIELD_PAGE));
 			}
 
-			fillObjects();
+			if(jsonObject.has(FIELD_NEAR_EARTH_OBJECTS)) {
+				JSONArray jarr = jsonObject.getJSONArray(FIELD_NEAR_EARTH_OBJECTS);
+				nearEarthObjects = new ArrayList<>(jarr.length());
+				for(int i = 0; i < jarr.length(); i++) {
+					NearEarthObject nearEarthObject = new NearEarthObject(); 
+					nearEarthObject.parse(jarr.getJSONObject(i));
+					nearEarthObjects.add(nearEarthObject);
+				}
+			}
 
 		} catch (JSONException | ParseException e) {
 			e.printStackTrace();
 		}
 
-	}
-
-	protected void fillObjects() throws JSONException, ParseException {
-		if(jsonObject.has(FIELD_NEAR_EARTH_OBJECTS)) {
-			JSONArray jarr = jsonObject.getJSONArray(FIELD_NEAR_EARTH_OBJECTS);
-			nearEarthObjects = new ArrayList<>(jarr.length());
-			fillNearEarthObjectsList(jarr);
-		}
-	}
-
-	protected void fillNearEarthObjectsList(JSONArray jarr) throws JSONException, ParseException {
-		for(int i = 0; i < jarr.length(); i++) {
-			NearEarthObject nearEarthObject = new NearEarthObject(); 
-			nearEarthObject.parse(jarr.getJSONObject(i));
-			nearEarthObjects.add(nearEarthObject);
-		}
 	}
 
 }

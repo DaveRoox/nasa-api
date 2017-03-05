@@ -46,7 +46,8 @@ public class Http {
 			response.append(inputLine);
 		}
 		in.close();
-
+		
+		/* Update of the response: raw response + parsing */
 		result.setRawResponse(response.toString());
 		result.parse();
 
